@@ -42,6 +42,17 @@ And the corresponding end point:
 
 ## Step 2: EC2 Training
 
+### Training
+Since the model is trained by the Python script itself, I choosed the same instance that was used in step 1 to train the model. The limiting factor is the CPU because with a batch size of 2 memory consumption should be no issue. 
 
+To create the `solution.py` file, I copied the file from a Git repository because I had problems pasting the code due to line endings on my Windows machine even though they were LF formatted.
 
+### Comparison
 
+After training, the model data is in the `TrainedModels` directory:
+
+![](images/step_2_ec2_model.png)
+
+There are a few differences between the `ec2train1.py` Python file and the `train_and_deploy-solution.ipynb` Jupyter notebook. The latter used the sagemaker and boto3 modules to start other instances to perform hyperparameter tuning and model training. Additionally, the trained model were also uploaded to S3 and an end point was deployed based on this model. Also, when using the Python file, the model is trained in the same instance that launched that file.
+
+## Step 3: Step 3: Lambda function setup
